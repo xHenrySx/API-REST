@@ -78,13 +78,13 @@ export const verifySignIn = (req, res, next) => {
 }
 
 export const verifyRoles = (req, res, next) => {
-    const { roles } = req.body;
-    const rolesArray = roles.split(",");
-    for (const role of rolesArray) {
+    const { roles } = req.body; 
+    for (const role of roles) {
         if (role !== "admin" && role !== "moderator" && role !== "user") {
             return res.status(400).json({ message: `Role ${role} does not exist. Please check documentation.` });
         }
     }
+    // Si hay roles verificar que el usuario que esta creando el usuario sea admin o moderador
     next();
 }
 
@@ -99,4 +99,6 @@ export const verifyDuplicated = async (req, res, next) => {
     if (userEmail) {
         return res.status(400).json({ message: "Email already exists" + userEmail});
     }
+
+    next();
 }

@@ -6,7 +6,7 @@ import { SECRET } from "../config.js";
 
 export const signup = async (req, res) => {
 
-    const { username, email, password, roles } = req.body;
+    const { username, email, password} = req.body;
     
 
     const newUser = new User({
@@ -15,30 +15,16 @@ export const signup = async (req, res) => {
         password: await User.encryptPassword(password)
     });
 
-    if ( roles ) {
-
-        // Buscamos los roles que coincidan con los roles que nos llegan
-        const foundRoles = await Role.find({ name: { $in: roles } });
-
-        // Asignamos los roles al usuario
-        newUser.roles = foundRoles.map((role) => {
-            return role._id;
-        });
-    } else {
-
-        // Si no nos llegan roles, asignamos el rol de usuario
-        const role = Role.findOne({ name: "user" });
-        newUser.roles = [role._id];
-    }
+    // Agregamos el rol de user
+    const role = Role.findOne({ name: "user" });
+    newUser.roles = [role._id];
 
     const savedUser = await newUser.save().catch(err => {
         return res.status(500).json({ message: err });
     });
     
     try {
-        jwt.sign({ id: savedUser._id }, SECRET,{
-            expiresIn: 86400 // 24 horas
-        }, (err, token) => {
+        jwt.sign({ id: savedUser._id }, SECRET, (err, token) => {
             if (err) {
                 console.log(err);
             } else {
