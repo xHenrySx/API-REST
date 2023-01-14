@@ -6,12 +6,12 @@ const booksrouter = Router();
 
 
 booksrouter
-.get("/:bookId", bookCtrl.getBookById)
+.get("/:bookId", verifyToken,bookCtrl.getBookById)
 .put("/:bookId", [verifyToken, isAdmin], bookCtrl.updateBookById)
 .patch("/:bookId", [verifyToken, isModerator], bookCtrl.updatePartialBookById)
 .delete("/:bookId", [verifyToken, isAdmin], bookCtrl.deleteBookById)
 
-.get("", bookCtrl.getBooks)
-.post("", [verifyToken, isModerator], bookCtrl.createBook);
+.get("/", verifyToken, bookCtrl.getBooks)
+.post("/", [verifyToken, isModerator], bookCtrl.createBook);
 
 export default booksrouter;
