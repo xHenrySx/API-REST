@@ -1,2 +1,0 @@
-
-function getUserByEmail(email)
