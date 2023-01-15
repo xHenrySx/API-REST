@@ -102,3 +102,42 @@ export const verifyDuplicated = async (req, res, next) => {
 
     next();
 }
+
+export const verifyFilter = (req, res, next) => {
+    const filter = req.query;
+    const availableFilters = ["title", "author", "year", "pages", "description"];
+    if (filter) {
+        for (const key in filter) {
+            if (!availableFilters.includes(key)) {
+                return res.status(400).json({ message: `${key} is not a valid filter. Please check the documentation` });
+            }
+        }
+        next();
+    } else {
+        next();
+    }
+}
+
+
+export const verifyOperators = (req, res, next) => {
+    if (req.headers.filter) {
+        try {
+            const filter = req.headers.filter.split(":");
+
+            if (filter.length !== 3) {
+                return res.status(400).json({ message: "Bad filter format. Please check the documentation" });
+            }
+
+            const operator = filter[1];
+            const availableOperators = ["gt", "gte", "lt", "lte", "ne", "substring"];
+            if (!availableOperators.includes(operator)) {
+                return res.status(400).json({ message: `${operator} is not a valid operator. Please check the documentation` });
+            }
+            next();
+        } catch (error) {
+            return res.status(400).json({ message: `Error: ${error}` });
+        }
+    } else {
+        next();
+    }
+}

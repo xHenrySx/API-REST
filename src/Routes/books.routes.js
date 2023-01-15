@@ -1,17 +1,21 @@
 import { Router } from "express";
 import * as bookCtrl from "../Controllers/General/books.controller.js";
-import { verifyToken, isAdmin, isModerator } from "../Middlewares/verify.js";
+import * as bookSpecCtrl from "../Controllers/Specifics/books.specific.js";
+import { verifyToken, isAdmin, isModerator, verifyFilter, verifyOperators } from "../Middlewares/verify.js";
 
 const booksrouter = Router();
 
 
 booksrouter
+
+.get("/", [verifyToken, verifyFilter, verifyOperators], bookSpecCtrl.getFilteredBooks)
+.post("/", [verifyToken, isModerator], bookCtrl.createBook)
+
 .get("/:bookId", verifyToken,bookCtrl.getBookById)
 .put("/:bookId", [verifyToken, isAdmin], bookCtrl.updateBookById)
 .patch("/:bookId", [verifyToken, isModerator], bookCtrl.updatePartialBookById)
-.delete("/:bookId", [verifyToken, isAdmin], bookCtrl.deleteBookById)
+.delete("/:bookId", [verifyToken, isAdmin], bookCtrl.deleteBookById);
 
-.get("/", verifyToken, bookCtrl.getBooks)
-.post("/", [verifyToken, isModerator], bookCtrl.createBook);
+
 
 export default booksrouter;

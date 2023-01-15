@@ -146,10 +146,11 @@ export const createBook = async (req, res) => {
 }
 
 
+// DEPRECATED
+/* Obtener todos los libros -> GET (All) -> 
+Ahora se usa una funcion extendida con filtro, o operadores */
 
-// Obtener todos los libros -> GET (All)
 export const getBooks = async (req, res) => {
-
     const books = await Book
     .find()
     .catch(err => {
