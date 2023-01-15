@@ -6,7 +6,7 @@ const userRouter = Router();
 userRouter
 
 .post("/",
-[verifyToken, isModerator, verifyRoles, verifyDuplicated],
+[verifyToken, isAdmin, verifyRoles, verifyDuplicated],
 userCtrl.createUser)
 
 .get("/", 
@@ -18,11 +18,11 @@ userCtrl.getUsers)
 userCtrl.getUserById)
 
 .put("/:userId", 
-[verifyToken, isModerator, verifyRoles, verifyDuplicated], 
+[verifyToken, isAdmin, verifyRoles, verifyDuplicated], 
 userCtrl.updateUserById)
 
 .patch("/:userId", 
-[verifyToken, isModerator, verifyRoles, verifyDuplicated], 
+[verifyToken, isAdmin, verifyRoles, verifyDuplicated], 
 userCtrl.updateUserPartiallyById)
 
 .delete("/:userId", 

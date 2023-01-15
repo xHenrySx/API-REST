@@ -32,7 +32,10 @@ export const signup = async (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                return res.status(200).json({ token, user: savedUser
+                return res.status(200).json({ token,
+                username: savedUser.username,
+                email: savedUser.email,
+                roles: savedUser.roles
                 });
             }
         });
@@ -68,7 +71,10 @@ export const signin = async (req, res) => {
                 expiresIn: 86400 // 24 horas
             }
         );
-        return res.json({ token, user: user });
+        return res.json({ token,
+        username: user.username,
+        email: user.email,
+        roles: user.roles });
     }
 
     // El token no expira si el rol es admin o moderator

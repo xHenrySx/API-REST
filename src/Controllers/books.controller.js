@@ -75,7 +75,8 @@ export const  updateBookById = async (req, res) => {
             pages: pages,
             description: description,
             image: image
-        })
+        },
+        {new: true})
         .catch(err => {
             return res.status(500).json({
                 Error: err.message
@@ -101,7 +102,7 @@ export const updatePartialBookById = async (req, res) => {
 
     if (mongoose.Types.ObjectId.isValid(bookId)) {
 
-        const updatedBook = await Book.findByIdAndUpdate(bookId, req.body)
+        const updatedBook = await Book.findByIdAndUpdate(bookId, req.body, {new: true})
         .catch(err => {
             return res.status(500).json({
                 Error: err.message
