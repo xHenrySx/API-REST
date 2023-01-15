@@ -1,7 +1,7 @@
 import User from "../../Models/User.model.js";
 import Role from "../../Models/Role.model.js";
 import jwt from "jsonwebtoken";
-import config from "../../config";
+import { SECRET } from "../../config.js";
 
 // Crea un usuario nuevo (solo para admins) -> POST
 export const createUser = async (req, res) => {
