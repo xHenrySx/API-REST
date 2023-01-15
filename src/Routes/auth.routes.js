@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as authCtrl from "../Controllers/auth.controller.js";
+import * as authCtrl from "../Controllers/General/auth.controller.js";
 import { verifySignUp, verifySignIn, verifyDuplicated} from "../Middlewares/verify.js";
 const authrouter = Router();
 

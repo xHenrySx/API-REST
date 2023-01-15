@@ -1,5 +1,5 @@
 // Objetivo: Definir las funciones que se ejecutarán cuando se llame a cada ruta
-import Book from '../Models/Book.model.js';
+import Book from '../../Models/Book.model.js';
 import  mongoose from 'mongoose';
 
 

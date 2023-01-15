@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as bookCtrl from "../Controllers/books.controller.js";
+import * as bookCtrl from "../Controllers/General/books.controller.js";
 import { verifyToken, isAdmin, isModerator } from "../Middlewares/verify.js";
 
 const booksrouter = Router();

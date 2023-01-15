@@ -1,7 +1,7 @@
-import User from "../Models/User.model.js";
-import Role from "../Models/Role.model.js";
+import User from "../../Models/User.model.js";
+import Role from "../../Models/Role.model.js";
 import jwt from "jsonwebtoken";
-import { SECRET } from "../config.js";
+import { SECRET } from "../../config.js";
 
 
 export const signup = async (req, res) => {

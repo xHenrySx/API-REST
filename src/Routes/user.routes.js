@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as userCtrl from "../Controllers/user.controller.js";
+import * as userCtrl from "../Controllers/General/user.controller.js";
 import { verifyToken, isAdmin, isModerator, verifyRoles, verifyDuplicated} from "../Middlewares/verify.js";
 const userRouter = Router();
 
