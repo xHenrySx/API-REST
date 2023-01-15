@@ -70,7 +70,7 @@ npm
 ### Usage
 ATTENTION: 
 - Some test only works when is run one time, beacuse it create users and users can be unique.
-- La ruta del server es local con puerto 3000
+- The server is listening to port 3000 locally
 
 To run the test:
 ```cmd
