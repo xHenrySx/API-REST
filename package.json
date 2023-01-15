@@ -27,5 +27,12 @@
   "bugs": {
     "url": "https://github.com/xHenrySx/API-REST/issues"
   },
-  "homepage": "https://github.com/xHenrySx/API-REST#readme"
+  "homepage": "https://github.com/xHenrySx/API-REST#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.20"
+  }
 }
