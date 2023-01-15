@@ -129,3 +129,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+collection.yml
+API Books.postman_collection2.json
+API Books.postman_collection.json

@@ -24,21 +24,13 @@ export const signup = async (req, res) => {
     });
     
     try {
-        jwt.sign({ id: savedUser._id },
-            {
-                expiresIn: 86400 // 24 horas
-            },
-            SECRET, (err, token) => {
-            if (err) {
-                console.log(err);
-            } else {
-                return res.status(200).json({ token,
-                username: savedUser.username,
-                email: savedUser.email,
-                roles: savedUser.roles
-                });
-            }
+        const token = jwt.sign({ id: savedUser._id }, SECRET, {
+            expiresIn: 86400 // 24 horas
         });
+        return res.status(200).json({ token,
+        username: savedUser.username,
+        email: savedUser.email,
+        roles: savedUser.roles });
     } catch (error) {
         return res.status(500).json({ message: error });
     }

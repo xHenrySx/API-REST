@@ -52,7 +52,7 @@ export const getFilteredBooks = async (req, res) => {
 	    const books = await Book.find(req.query);
 	
 	    if (!books) {
-	        return res.status(404).json({ message: "Books not found" });
+	        return res.status(404).json({ message: `Books not found with the params: ${req.query}` });
 	    }
 	    
 	    return res.status(200).json(books);

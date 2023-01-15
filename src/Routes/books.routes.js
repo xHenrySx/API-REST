@@ -12,7 +12,7 @@ booksrouter
 .post("/", [verifyToken, isModerator], bookCtrl.createBook)
 
 .get("/:bookId", verifyToken,bookCtrl.getBookById)
-.put("/:bookId", [verifyToken, isAdmin], bookCtrl.updateBookById)
+.put("/:bookId", [verifyToken, isModerator], bookCtrl.updateBookById)
 .patch("/:bookId", [verifyToken, isModerator], bookCtrl.updatePartialBookById)
 .delete("/:bookId", [verifyToken, isAdmin], bookCtrl.deleteBookById);
 
