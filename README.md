@@ -11,13 +11,24 @@
   - [Prerequisites](#prerequisites)
 - [DOCUMENTATION](#documentation)
     - [BOOKS](#books)
-        - [Parameters](#parameters)
-            - [title](#title)
-            - [author](#author)
-            - [year](#year)
-            - [pages](#pages)
-            - [description](#description)
-            - [image](#image)
+      - [Parameters](#parameters)
+        - [title](#title)
+        - [author](#author)
+        - [year](#year)
+        - [pages](#pages)
+        - [description](#description)
+        - [image](#image)
+    - [USERS](#users)
+      - [Parameters](#parameters)
+        - [title](#title)
+        - [author](#author)
+        - [year](#year)
+        - [pages](#pages)
+        - [description](#description)
+        - [image](#image)
+    - [AUTH](#auth)
+      - [sign up](#sign up)
+      - [sign in](#sign in)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 - [Contacts](#contacts)
@@ -34,26 +45,32 @@ The book API help to obtain information about a specific book or a lot of books 
 
 ## Getting Started
 
-To start first run the comand
-npm install 
+To start first run the command
+    ```
+        npm install 
+    ```
+
 then 
-to run like a developer just run the comand
-npm run dev
+to run like a developer just run the command
+    ```
+        npm run dev
+    ```
 or to build it
-npm run build && npm run start
+    ```
+        npm run build && npm run start
+    ```
+
 
 ### Prerequisites
-
+javascript
 node.js
 npm
-
-
 
 ## DOCUMENTATION
 
 ### BOOKS
 The book model is constructed like this:
-JSON
+```json
 {    
     "title": "String",
     "author":  "String",
@@ -62,6 +79,7 @@ JSON
     "description": "String",
     "image": "String"
 }
+```
 #### Parameters
 ##### title
 The title of the book.
@@ -88,6 +106,66 @@ The url of the book image.
 Type: String.
 Required
 
+### USERS
+The user construction is created like this:
+```json
+{
+    "username": "String",
+    "email": "String",
+    "password": "String",
+    "roles": [] 
+}
+```
+#### Params
+##### username
+The user, username.
+Type: String.
+Required and Unique.
+
+##### email
+The user email.
+Type: String.
+Required and Unique.
+
+##### password
+The user password.
+Type: String.
+Required.
+
+##### roles
+The user roles.
+Type: Array.
+Default role is user.
+
+### AUTH
+The authentication is used to sign in or sign up.
+The sign up can be performed by anyone as well as the sing in.
+But only the admins or moderators previous registerd can add users by the
+user class, update, or delete them.
+#### sign up
+The sign up require:
+```json
+{
+    "username": "somename",
+    "email": "email@something.com",
+    "password": "password"
+}
+```
+When you sign up as a user it gives you, your user and a token to perform
+basic operations to the API, almost every get request.
+
+#### sign in
+The sign in require:
+```json
+{
+    "email": "email@something.com",
+    "password": "password"
+}
+```
+When you sign in the API return the user and a token to use.
+The tokes expires depends on the role:
+- admin or moderator: Unlimited for every sign in
+- user: 24 hours for every sign in
 
 ## License
 
