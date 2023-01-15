@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@babel/plugin-syntax-import-assertions": "^7.20.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
@@ -33,6 +32,7 @@
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/node": "^7.20.7",
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
     "@babel/preset-env": "^7.20.2",
     "nodemon": "^2.0.20"
   }
