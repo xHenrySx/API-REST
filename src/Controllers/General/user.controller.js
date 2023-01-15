@@ -28,23 +28,25 @@ export const createUser = async (req, res) => {
     }
 
     // Si el usuario es admin, no se le asigna un token de expiración
-    if (roles.include("admin")) {
-        const token = jwt.sign({ id: savedUser._id }, config.SECRET);
+    if ( roles && roles.includes("admin")) {
+        const token = jwt.sign({ id: savedUser._id }, SECRET);
 
         return res.status(200).json({
         token,
+        _id: savedUser._id,
         username: savedUser.username,
         email: savedUser.email,
         roles: savedUser.roles 
         });
     }
 
-    const token = jwt.sign({ id: savedUser._id }, config.SECRET, {
+    const token = jwt.sign({ id: savedUser._id }, SECRET, {
         expiresIn: 86400 // 24 horas
     });
 
     return res.status(200).json({ 
     token,
+    _id: savedUser._id,
     username: savedUser.username,
     email: savedUser.email,
     roles: savedUser.roles});
@@ -80,6 +82,10 @@ export const getUsers = async (req, res) => {
 // Actualiza el usuario con Id (solo para admins) -> PUT
 export const updateUserById = async (req, res) => {
     try {
+        if (req.body.password) {
+            req.body.password = await User.encryptPassword(req.body.password);
+        }
+        
         const user = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true });
 
         if (!user) {
@@ -96,6 +102,11 @@ export const updateUserById = async (req, res) => {
 // Actualiza parcialmente el usuario con Id (solo para admins) -> PATCH
 export const updateUserPartiallyById = async (req, res) => {
     try {
+
+        if (req.body.password) {
+            req.body.password = await User.encryptPassword(req.body.password);
+        }
+
         const user = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true });
 
         if (!user) {

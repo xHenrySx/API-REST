@@ -54,38 +54,43 @@ export const isAdmin = async (req, res, next) => {
 
 export const verifySignUp = (req, res, next) => {
     const { username, email, password } = req.body;
-    if (!username) {
-        return res.status(400).json({ message: "Username is required" });
+    if (!username || typeof username !== "string") {
+        return res.status(400).json({ message: "Username is required and must be string" });
     }
-    if (!email) {
-        return res.status(400).json({ message: "Email is required" });
+    if (!email || typeof email !== "string") {
+        return res.status(400).json({ message: "Email is required and must be string" });
     }
-    if (!password) {
-        return res.status(400).json({ message: "Password is required" });
+    if (!password || typeof password !== "string") {
+        return res.status(400).json({ message: "Password is required and must be string" });
     }
     next();
 }
 
 export const verifySignIn = (req, res, next) => {
     const { email, password } = req.body;
-    if (!email) {
-        return res.status(400).json({ message: "Email is required" });
+    if (!email || typeof email !== "string") {
+        return res.status(400).json({ message: "Email is required and must be string" });
     }
-    if (!password) {
-        return res.status(400).json({ message: "Password is required" });
+    if (!password || typeof password !== "string") {
+        return res.status(400).json({ message: "Password is required and must be string" });
     }
     next();
 }
 
 export const verifyRoles = (req, res, next) => {
-    const { roles } = req.body; 
-    for (const role of roles) {
-        if (role !== "admin" && role !== "moderator" && role !== "user") {
-            return res.status(400).json({ message: `Role ${role} does not exist. Please check documentation.` });
+    if (req.body.roles) {
+        const { roles } = req.body; 
+        for (const role of roles) {
+            if (role !== "admin" && role !== "moderator" && role !== "user") {
+                return res.status(400).json({ message: `Role ${role} does not exist. Please check documentation.` });
+            }
         }
+        // Si hay roles verificar que el usuario que esta creando el usuario sea admin o moderador
+        next();
+    } else {
+        next();
     }
-    // Si hay roles verificar que el usuario que esta creando el usuario sea admin o moderador
-    next();
+    
 }
 
 
@@ -99,7 +104,6 @@ export const verifyDuplicated = async (req, res, next) => {
     if (userEmail) {
         return res.status(400).json({ message: "Email already exists" + userEmail});
     }
-
     next();
 }
 
@@ -139,5 +143,59 @@ export const verifyOperators = (req, res, next) => {
         }
     } else {
         next();
+    }
+}
+
+export const verifyData = (req, res, next) => {
+    if (req.body) {
+        const { title, author, year, pages, description, image } = req.body;
+        if (!title || typeof title !== "string") {
+            return res.status(400).json({ message: "Title is required and must be string" });
+        }
+        if (!author || typeof author !== "string") {
+            return res.status(400).json({ message: "Author is required and must be string" });
+        }
+        if (!year || typeof year !== "number") {
+            return res.status(400).json({ message: "Year is required and must be number" });
+        }
+        if (!pages || typeof pages !== "number") {
+            return res.status(400).json({ message: "Pages is required and must be number" });
+        }
+        if (!description || typeof description !== "string") {
+            return res.status(400).json({ message: "Description is required and must be string" });
+        }
+        if (!image || typeof image !== "string") {
+            return res.status(400).json({ message: "Image is required and must be string" });
+        }
+        next();
+    } else {
+        return res.status(400).json({ message: "No data provided" });
+    }
+}
+
+export const verifyDataPartial = (req, res, next) => {
+    if (req.body) {
+        const { title, author, year, pages, description, image } = req.body;
+        if (title && typeof title !== "string") {
+            return res.status(400).json({ message: "Title must be string" });
+        }
+        if (author && typeof author !== "string") {
+            return res.status(400).json({ message: "Author must be string" });
+        }
+        if (year && typeof year !== "number") {
+            return res.status(400).json({ message: "Year must be number" });
+        }
+        if (pages && typeof pages !== "number") {
+            return res.status(400).json({ message: "Pages must be number" });
+        }
+        if (description && typeof description !== "string") {
+            return res.status(400).json({ message: "Description must be string" });
+        }
+        if (image && typeof image !== "string") {
+            return res.status(400).json({ message: "Image must be string" });
+        }
+        next();
+    } else {
+        return res.status(400).json({ message: "No data provided" });
     }
 }

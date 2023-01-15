@@ -63,7 +63,7 @@ export const signin = async (req, res) => {
                 expiresIn: 86400 // 24 horas
             }
         );
-        return res.satus(200).json({ token,
+        return res.status(200).json({ token,
         username: user.username,
         email: user.email,
         roles: user.roles });
