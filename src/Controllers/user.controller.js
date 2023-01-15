@@ -1,5 +1,5 @@
-import User from "../Models/User.model";
-import Role from "../Models/Role.model";
+import User from "../Models/User.model.js";
+import Role from "../Models/Role.model.js";
 import jwt from "jsonwebtoken";
 import config from "../config";
 
