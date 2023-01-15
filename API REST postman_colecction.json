@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "155f33c5-d0d8-4df4-b9b5-307290b432cb",
+		"name": "API Books",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24951299"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "/api/books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "filter",
+								"value": "field:operator:value",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							]
+						},
+						"description": "Get endpoint to obtain all the books on the database.\n\nOnly available for registered users or above.\n\n**It require to pass a token in the headers with the name: x-access-token**\n\n## Optional Filter\n\nThis parameters go on the Headers with the key: _**filter**_\n\n### gt (>)\n\nObtain books that the field is greater than a value\n\nfield:operator:value\n\nExample :\n\nif you pass to the headers -> filter: year:gt:1925 yo obtain:\n\n``` json\n[\n    {\n        \"_id\": \"63c3349458ca497c911f6a42\",\n        \"title\": \"Luces de Bohemia\",\n        \"author\": \"Ramón María del Valle-Inclán\",\n        \"year\": 1926,\n        \"pages\": 296,\n        \"description\": \"La obra narra las últimas horas de la vida de Max Estrella, un «hiperbólico andaluz, poeta de odas y madrigales» ya anciano, miserable y ciego que gozó en algún momento de cierto reconocimiento. En su peregrinaje por un Madrid oscuro, turbio, marginal y sórdido, le acompaña don Latino de Hispalis y le dan la réplica algunos otros personajes de la bohemia madrileña de la época. En sus diálogos se vierten de forma magistral críticas a la cultura oficialista y a la situación social y política de una España condenada a no reconocer a sus próceres. Tras múltiples vicisitudes, la obra acaba con la muerte de Max Estrella y se prolonga con su velatorio. El drama se cierra con un borracho que grita: ¡Cráneo previlegiado!, expresión que se repite a lo largo de la historia y que resume el enfoque esperpéntico de la misma. A partir de la figura de Max Estrella trasciende la anécdota del fracaso y la muerte de un escritor venido a menos. La obra se convierte en una parábola trágica y grotesca de la imposibilidad de vivir en un país deforme, injusto y opresivo, como es la España del 1920, degradada, desconsiderada con el pueblo llano y llena de corrupción.\",\n        \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Luces_de_bohemia,_esperpento_1924.jpg/375px-Luces_de_bohemia,_esperpento_1924.jpg\",\n        \"createdAt\": \"2023-01-14T23:02:44.545Z\",\n        \"updatedAt\": \"2023-01-14T23:02:44.545Z\"\n    },\n    {\n        \"_id\": \"63c355e2b96da8841e980633\",\n        \"title\": \"100 años de soledad\",\n        \"author\": \"Gabriel García Márquez\",\n        \"year\": 1967,\n        \"pages\": 471,\n        \"description\": \"El libro narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo José Arcadio Buendía y Úrsula Iguarán son un matrimonio de primos que se casaron llenos de presagios y temores por su parentesco y el mito existente en la región de que su descendencia podía tener cola de cerdo. En una pelea de gallos en la que resultó muerto el animal de Prudencio Aguilar, este, enardecido por la derrota, le gritó a José Arcadio Buendía, dueño del vencedor: «A ver si ese gallo le hace el favor a tu mujer», ya que la gente del pueblo sospechaba que José Arcadio y Úrsula no habían tenido relaciones en un año de matrimonio (por el miedo de Úrsula de que la descendencia naciera con cola de cerdo). José Arcadio Buendía reta en duelo a Prudencio y lo mata al atravesarle la garganta con una lanza. A partir de entonces, el fantasma de Prudencio lo atormenta apareciéndose repetidas veces en su casa tratando de cerrar la herida mortal con un tapón de esparto. A causa del acoso del fantasma de Aguilar, José Arcadio Buendía y Úrsula Iguarán deciden irse a la sierra.\",\n        \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Cien_años_de_soledad.png/330px-Cien_años_de_soledad.png\",\n        \"createdAt\": \"2023-01-15T01:24:50.667Z\",\n        \"updatedAt\": \"2023-01-15T01:24:50.667Z\"\n    },\n    {\n        \"_id\": \"63c356b0b96da8841e980638\",\n        \"title\": \"La casa de los espíritus\",\n        \"author\": \"Isabel Allende\",\n        \"year\": 1982,\n        \"pages\": 464,\n        \"description\": \"La historia se inicia con una remembranza del diario de la niña Clara del Valle en un Jueves Santo, seguido por un comentario en una misa de mediodía en la capital de un país desconocido de Sudamérica. El escandaloso incidente en la iglesia establece el tono del resto de la novela. Clara seguiría escribiendo en su diario (al que ella se refería como cuadernos de escribir la vida) hasta su muerte. Esteban Trueba es un humilde ciudadano que parte rumbo a las minas para ganar suficiente dinero como para poder casarse con su amada, Rosa del Valle, una hermosa mujer con pelo verde. Durante su ausencia, Rosa muere envenenada por equivocación: los del partido político rivales a Severo del Valle, su padre, lo querían asesinar a él para que no fuese elegido. Esteban es de carácter fuerte y, constantemente, padece ataques de ira, ansiedad y violencia. Sufre mucho cuando Rosa muere, por lo que decide ir a reconstruir completamente Las Tres Marías, una vieja hacienda abandonada por su padre para olvidarse de su amada y hacerse rico. Diez años más tarde, ha conseguido reconstruir toda la finca y, a pesar de que ha mejorado enormemente las condiciones de vida de los empleados, su trato despótico y sus constantes abusos despiertan el silencioso resentimiento de más de un trabajador.\",\n        \"image\": \"https://cloudfront-us-east-1.images.arcpublishing.com/infobae/5COLGGFAZ5GFPGN6HR5D7CKY6I.jpg\",\n        \"createdAt\": \"2023-01-15T01:28:16.613Z\",\n        \"updatedAt\": \"2023-01-15T01:28:16.613Z\"\n    },\n    {\n        \"_id\": \"63c36716e156ded2fe57ccdf\",\n        \"title\": \"El tamaño de mi esperanza\",\n        \"author\": \"Jorge Luis Borges\",\n        \"year\": 1926,\n        \"pages\": 153,\n        \"description\": \"En él se vislumbran los ingredientes típicos de lo que sería la obra de Borges: lo criollo, las referencias de la pampa, la inquietud por la literatura y la preocupación por el lenguaje.\",\n        \"image\": \"https://planetalibro.net/biblioteca/j/o/jorge/jorge-luis-borges-el-tamano-de-mi-esperanza/jorge-luis-borges-el-tamano-de-mi-esperanza.jpg\",\n        \"createdAt\": \"2023-01-15T02:38:14.450Z\",\n        \"updatedAt\": \"2023-01-15T02:38:14.450Z\"\n    },\n    {\n        \"_id\": \"63c367bde156ded2fe57cce4\",\n        \"title\": \"Los desterrados\",\n        \"author\": \"Horacio Quiroga\",\n        \"year\": 1926,\n        \"pages\": 141,\n        \"description\": \"Los desterrados es un libro de cuentos de Horacio Quiroga, publicado en 1926 por la Sociedad Cooperativa Editorial Limitada de Buenos Aires. La obra reúne ocho relatos divididos en dos partes: El ambiente y Los tipos. Fue publicado el mismo año que El juguete rabioso y Don Segundo Sombra. La crítica especializada considera que es su libro más homogéneo y decidido​ así como más equilibrado y auténtico.\",\n        \"image\": \"https://www.etp.com.py/img/tapa-mediana-1093196.jpg\",\n        \"createdAt\": \"2023-01-15T02:41:01.871Z\",\n        \"updatedAt\": \"2023-01-15T02:41:01.871Z\"\n    }\n]\n\n```\n\n### gte (>=)\n\nObtain books that the field is greater than or equal to a value\n\nfield:operator:value\n\nExample:\n\npages:gte:400\n\n### lt (<)\n\nObtain books that the field is less than to a value\n\nfield:operator:value\n\nExample:\n\npages:lt:100\n\n### lte (<=)\n\nObtain books that the field is less than or equal to a value\n\nfield:operator:value\n\nExample:\n\npages:lte:125\n\n### ne (!=)\n\nObtain books that the field is not equal to a value\n\nfield:operator:value\n\nExample:\n\nyear:ne:1926\n\n### substring\n\nObtain books thar the field contains a substring\n\nfield:operator:string\n\nExample\n\ntitle:substring:de\n\n## Optional Params\n\nAlso, if you want yo cant filter your query with some params and combine them.\n\nAvailable parameters:\n\n- title\n- author\n- year\n- pages\n- description\n    \n\nFor example:\n\nTo obtain the books with name Luces de Bohemia published in the year 1926 you hace to query like this:\n\n{URL}/api/books/?title=Luces de Bohemia&year=1926\n\n## Combination\n\nThe API can handle both request at the same time, the header filter and the Query Parameters, so you can have more posibilities handling the data\n\nFor example:\n\n{URL}/api/books/?year=1926\n\nCombinated with:\n\nheaders {\n\n...,\n\nfilter: \" page:gt:200\" ,\n\n...\n\n}\n\nWith this you will have all the books published in the year 1926 with pages greater than 200.\n\n# HTTP Status Codes\n\n### 200\n\nThe book or books was find, is OK.\n\n### 401\n\nThe user is unauthorized.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Books not found, if the books searched was not found\n- Books not found with the params {param}, if the param entered didn't match with a book\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/books/<bookId>",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/books/63c3349458ca497c911f6a42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"63c3349458ca497c911f6a42"
+							]
+						},
+						"description": "Endpoint to obtain a single book with id \"bookId\"\n\nOnly available for users or above\n\nIt requires to have a valid token to perform the operation.\n\n# HTTP Status Codes\n\n### 200\n\nThe book was find, is OK.\n\n### 401\n\nThe user is unauthorized.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Book not found, if the book searched was not found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/books",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							]
+						},
+						"description": "Endpoint to add a new book\n\nOnly available to moderators or admins.\n\nIt requires a valid token.\n\nThe req.body contains all the information to add.\n\n# HTTP Status Codes\n\n### 201\n\nThe book was created.\n\n### 401\n\nThe user is unauthorized.\n\n### 403\n\nIf the user is not an moderator or admin\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or adding data on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/books/<bookId>",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Luces de Bohemia\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books/63c3349458ca497c911f6a42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"63c3349458ca497c911f6a42"
+							]
+						},
+						"description": "Endpoint to update only a partial part of the data.\n\nOnly available for moderators or above.\n\nRequire an access token to perform\n\nThe information is obtained of the req.body\n\nStartFragment\n\n# HTTP Status Codes\n\n### 200\n\nThe book or books was patched, is OK.\n\n### 401\n\nThe user is unauthorized.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Books not found, if the books searched was not found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/books/<bookId>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books/63c3349458ca497c911f6a42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"63c3349458ca497c911f6a42"
+							]
+						},
+						"description": "Endpoint to update all the data.\n\nOnly available for moderators or above.\n\nRequire an access token to perform\n\nThe information is obtained of the req.body\n\n# HTTP Status Codes\n\n### 200\n\nThe book or books was patched, is OK.\n\n### 401\n\nThe user is unauthorized.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Books not found, if the books searched was not found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "api/books/<bookId>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/books/63c3349458ca497c911f6a42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"63c3349458ca497c911f6a42"
+							]
+						},
+						"description": "Endpoint to delete a book by id\n\nOnly available for admins.\n\nRequire an access token to perform\n\n# HTTP Status Codes\n\n### 200\n\nThe book or books was deleted, is OK.\n\n### 401\n\nThe user is unauthorized.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Books not found, if the books searched was not found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter."
+					},
+					"response": []
+				}
+			],
+			"description": "# The book model is constructed like this:\n\n``` json\n{    \n    \"title\": \"String\",\n    \"author\":  \"String\",\n    \"year\": \"Number\",\n    \"pages\": \"Number\",\n    \"description\": \"String\",\n    \"image\": \"String\"\n}\n\n```\n\n## **Parameters**\n\n### **title**\n\nThe title of the book.\n\nType: String.\n\nRequired.\n\n### **author**\n\nThe author of the book.\n\nType: String.\n\nRequired.\n\n### **year**\n\nThe publishing year of the book.\n\nType: Number.\n\nRequired.\n\n### pages\n\nThe amount of pages of the book.\n\nType: Number.\n\nRequired.\n\n### description\n\nThe description of the book\n\nType: String\n\nRequired\n\n### image\n\nThe url of the book image.\n\nType: String.\n\nRequired"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Endpoint to get all users\n\nOnly available for moderators or above.\n\nRequire an access token to perform the operation.\n\n# HTTP Status Codes\n\n### 200\n\nThe user or users was find, is OK.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Users not found, if not users found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/<userId>",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/<userId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"<userId>"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Endpoint to get a user by id.\n\nOnly available for moderators or above.\n\nRequire an access toke to perform.\n\nStartFragment\n\n# HTTP Status Codes\n\n### 200\n\nThe user was find, is OK.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Users not found, if not user found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/<userId>",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/<userId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"<userId>"
+							]
+						},
+						"description": "Endpoint to completely update an user by id.\n\nOnly available for admins.\n\nRequire a token to perform.\n\nStartFragment\n\n# HTTP Status Codes\n\n### 200\n\nThe user was updated, is OK.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Users not found, if not users found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/<userId>",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/<userId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"<userId>"
+							]
+						},
+						"description": "Endpoint to partially update a user by id.\n\nOnly available for admins.\n\nRequire an access token to perform.\n\nStartFragment\n\n# HTTP Status Codes\n\n### 200\n\nThe user was updated, is OK.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Users not found, if not users found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/<userId>",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/<userId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"<userId>"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "Endpoint to delete a user by id.\n\nOnly available for admins.\n\nRequire an access token to perform.\n\nStartFragment\n\n# HTTP Status Codes\n\n### 200\n\nThe user was deleted, is OK.\n\n### 404\n\nCan be triggered by:\n\n- No user found, if the token contains invalid information\n- Users not found, if not users found\n    \n\n### 500\n\nThe server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "The user construction is created like this\n\n``` json\n{\n    \"username\": \"String\",\n    \"email\": \"String\",\n    \"password\": \"String\",\n    \"roles\": [] \n}\n\n```\n\n## Params\n\n### username\n\nThe user, username.\n\nType: String\n\nRequired and Unique.\n\n### email\n\nThe user email.\n\nType: String\n\nRequired and Unique.\n\n### password\n\nThe user password\n\nType: String\n\nRequired.\n\n### roles\n\nThe user roles\n\nType: Array\n\nDefault role is user."
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "/api/auth/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Jessica\",\r\n    \"email\": \"jessica@gmail.com\",\r\n    \"password\": \"12345\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						},
+						"description": "Endpoint to sign up a new user\n\nRequire a username, email and password.\n\nReturns the user and a token."
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"harvey@gmail.com\",\r\n    \"password\": \"12345\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						},
+						"description": "Endpoint to sign in a user\n\nRequire a email and password.\n\nReturns the user and a token."
+					},
+					"response": []
+				}
+			],
+			"description": "The authentication is used to sign in or sign up.\n\nThe sign up can be performed by anyone as well as the sing in.\n\nBut only the admins or moderators previous registerd can add users by the user class, update, or delete them.\n\nThe sign up require:\n\n- username\n- email\n- password\n    \n\nWhen you sign up as a user it gives you your user and a token to perform basic operations to the API, almost every get request.\n\nThe sign in require:\n\n- email\n- password\n    \n\nWhen you sign in the API return the user and a token to use.\n\nThe tokes expires depends on the role:\n\n- admin or moderator: Unlimited for every sign in\n- user: 24 hours for every sign in"
+		}
+	]
+}
