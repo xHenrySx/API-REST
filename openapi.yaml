@@ -1,0 +1,878 @@
+openapi: 3.0.0
+info:
+  title: API Books
+  version: 1.0.0
+  description: >-
+
+    This is a sample book API to obtain books as users wants.
+
+
+    Was maded by Enrique Saldivar in
+    2023.                                                                                                                
+  contact:
+    name: Enrique Adrian Saldivar Duarte
+    email: enrisal2000@gmail.com
+    url: https://www.henrysdev.me
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: Books
+    description: Operations about the books
+  - name: Users
+    description: Managing users account
+  - name: Auth
+    description: Sign up and Sign in
+paths:
+  /api/books:
+    get:
+      tags:
+        - Books
+      description: >-
+
+
+        Only available for registered users or above.
+
+
+        **It require to pass a token in the headers with the name:
+        x-access-token**
+
+
+        ## Optional Filter
+
+
+        This parameters go on the Headers with the key: _**filter**_
+
+
+        ### gt (>)
+
+
+        Obtain books that the field is greater than a value
+
+
+        field:operator:value
+
+
+        Example :
+
+        ```
+
+        year:gt:1925
+
+        ```
+
+        ### gte (>=)
+
+
+        Obtain books that the field is greater than or equal to a value
+
+
+        field:operator:value
+
+
+        Example:
+
+        ```
+
+        pages:gte:400
+
+        ```
+
+        ### lt (<)
+
+
+        Obtain books that the field is less than to a value
+
+
+        field:operator:value
+
+
+        Example:
+
+        ```
+
+        pages:lt:100
+
+        ```
+
+        ### lte (<=)
+
+
+        Obtain books that the field is less than or equal to a value
+
+
+        field:operator:value
+
+
+        Example:
+
+        ```
+
+        pages:lte:125
+
+        ```
+
+        ### ne (!=)
+
+
+        Obtain books that the field is not equal to a value
+
+
+        field:operator:value
+
+
+        Example:
+
+        ```
+
+        year:ne:1926
+
+        ```
+
+        ### substring
+
+
+        Obtain books thar the field contains a substring
+
+
+        field:operator:string
+
+
+        Example
+
+        ```
+
+        title:substring:de
+
+        ```
+
+        ## Optional Params
+
+
+        Also, if you want yo cant filter your query with some params and combine
+        them.
+
+
+        Available parameters:
+
+
+        - title
+
+        - author
+
+        - year
+
+        - pages
+
+        - description
+            
+
+        For example:
+
+
+        To obtain the books with name Luces de Bohemia published in the year
+        1926 you hace to query like this:
+
+        ```http
+
+        {URL}/api/books/?title=Luces de Bohemia&year=1926
+
+        ```
+
+        ## Combination
+
+
+        The API can handle both request at the same time, the header filter and
+        the Query Parameters, so you can have more posibilities handling the
+        data
+
+
+        For example:
+
+        ```http
+
+        {URL}/api/books/?year=1926
+
+        ```
+
+        Combinated with:
+
+        ```json
+
+        headers {
+
+        ...,
+
+        filter: " page:gt:200",
+
+        ...
+
+        }
+
+        ```
+
+        With this you will have all the books published in the year 1926 with
+        pages greater than 200.
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+        - name: filter
+          in: header
+          schema:
+            type: string
+          example: year:gt:1925
+      responses:
+        '200':
+          description: The book or books was find
+          content:
+            application/json:
+              examples:
+                Get book:
+                  value: |-
+                    [
+                        {
+                            "_id": "63c356b0b96da8841e980638",
+                            "title": "La casa de los espíritus",
+                            "author": "Isabel Allende",
+                            "year": 1982,
+                            "pages": 464,
+                            "description": "La historia se inicia con una remembranza del diario de la niña Clara del Valle en un Jueves Santo, seguido por un comentario en una misa de mediodía en la capital de un país desconocido de Sudamérica. El escandaloso incidente en la iglesia establece el tono del resto de la novela. Clara seguiría escribiendo en su diario (al que ella se refería como cuadernos de escribir la vida) hasta su muerte. Esteban Trueba es un humilde ciudadano que parte rumbo a las minas para ganar suficiente dinero como para poder casarse con su amada, Rosa del Valle, una hermosa mujer con pelo verde. Durante su ausencia, Rosa muere envenenada por equivocación: los del partido político rivales a Severo del Valle, su padre, lo querían asesinar a él para que no fuese elegido. Esteban es de carácter fuerte y, constantemente, padece ataques de ira, ansiedad y violencia. Sufre mucho cuando Rosa muere, por lo que decide ir a reconstruir completamente Las Tres Marías, una vieja hacienda abandonada por su padre para olvidarse de su amada y hacerse rico. Diez años más tarde, ha conseguido reconstruir toda la finca y, a pesar de que ha mejorado enormemente las condiciones de vida de los empleados, su trato despótico y sus constantes abusos despiertan el silencioso resentimiento de más de un trabajador.",
+                            "image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/5COLGGFAZ5GFPGN6HR5D7CKY6I.jpg",
+                            "createdAt": "2023-01-15T01:28:16.613Z",
+                            "updatedAt": "2023-01-15T01:28:16.613Z"
+                        }
+                    ]
+        '401':
+          description: The user is unautorized
+        '404':
+          description: >-
+            - No user found, if the token is invalid
+
+            - Books not found, the book searched was not found
+
+            - Books not found with the params, if the param didn't match with a
+            book
+        '500':
+          description: >-
+            The server try to perform the operation but failed. It occurs
+            probably while searching on the database with some wrong parameter.
+      summary: Get endpoint to obtain all the books on the database.
+    post:
+      tags:
+        - Books
+      description: |-
+
+
+        Only available to moderators or admins.
+
+        It requires a valid token.
+
+        The req.body contains all the information to add.
+      requestBody:
+        content:
+          Book content:
+            schema:
+              type: string
+              example: |-
+                {
+                      "title": "Title of the book",
+                      "author": "Author of the book",
+                      "year": 1926,
+                      "pages": 542,
+                      "description": "Some description about the book",
+                      "image":  "https//image-of-the-book.png" 
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: The book was created
+          content:
+            application/json:
+              examples:
+                Successful Response:
+                  value: |-
+                    {
+                            "_id": "63c356b0b96da8841e980638",
+                            "title": "La casa de los espíritus",
+                            "author": "Isabel Allende",
+                            "year": 1982,
+                            "pages": 464,
+                            "description": "La historia se inicia con una remembranza del diario de la niña Clara del Valle en un Jueves Santo, seguido por un comentario en una misa de mediodía en la capital de un país desconocido de Sudamérica. El escandaloso incidente en la iglesia establece el tono del resto de la novela. Clara seguiría escribiendo en su diario (al que ella se refería como cuadernos de escribir la vida) hasta su muerte. Esteban Trueba es un humilde ciudadano que parte rumbo a las minas para ganar suficiente dinero como para poder casarse con su amada, Rosa del Valle, una hermosa mujer con pelo verde. Durante su ausencia, Rosa muere envenenada por equivocación: los del partido político rivales a Severo del Valle, su padre, lo querían asesinar a él para que no fuese elegido. Esteban es de carácter fuerte y, constantemente, padece ataques de ira, ansiedad y violencia. Sufre mucho cuando Rosa muere, por lo que decide ir a reconstruir completamente Las Tres Marías, una vieja hacienda abandonada por su padre para olvidarse de su amada y hacerse rico. Diez años más tarde, ha conseguido reconstruir toda la finca y, a pesar de que ha mejorado enormemente las condiciones de vida de los empleados, su trato despótico y sus constantes abusos despiertan el silencioso resentimiento de más de un trabajador.",
+                            "image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/5COLGGFAZ5GFPGN6HR5D7CKY6I.jpg",
+                            "createdAt": "2023-01-15T01:28:16.613Z",
+                            "updatedAt": "2023-01-15T01:28:16.613Z"
+                        }
+      summary: Endpoint to add a new book
+  /api/books/<bookId>:
+    get:
+      tags:
+        - Books
+      description: |-
+        Endpoint to obtain a single book with id "bookId"
+
+        Only available for users or above
+
+        It requires to have a valid token to perform the operation.
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                Successful Response:
+                  value: |-
+                    {
+                            "_id": "63c356b0b96da8841e980638",
+                            "title": "La casa de los espíritus",
+                            "author": "Isabel Allende",
+                            "year": 1982,
+                            "pages": 464,
+                            "description": "La historia se inicia con una remembranza del diario de la niña Clara del Valle en un Jueves Santo, seguido por un comentario en una misa de mediodía en la capital de un país desconocido de Sudamérica. El escandaloso incidente en la iglesia establece el tono del resto de la novela. Clara seguiría escribiendo en su diario (al que ella se refería como cuadernos de escribir la vida) hasta su muerte. Esteban Trueba es un humilde ciudadano que parte rumbo a las minas para ganar suficiente dinero como para poder casarse con su amada, Rosa del Valle, una hermosa mujer con pelo verde. Durante su ausencia, Rosa muere envenenada por equivocación: los del partido político rivales a Severo del Valle, su padre, lo querían asesinar a él para que no fuese elegido. Esteban es de carácter fuerte y, constantemente, padece ataques de ira, ansiedad y violencia. Sufre mucho cuando Rosa muere, por lo que decide ir a reconstruir completamente Las Tres Marías, una vieja hacienda abandonada por su padre para olvidarse de su amada y hacerse rico. Diez años más tarde, ha conseguido reconstruir toda la finca y, a pesar de que ha mejorado enormemente las condiciones de vida de los empleados, su trato despótico y sus constantes abusos despiertan el silencioso resentimiento de más de un trabajador.",
+                            "image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/5COLGGFAZ5GFPGN6HR5D7CKY6I.jpg",
+                            "createdAt": "2023-01-15T01:28:16.613Z",
+                            "updatedAt": "2023-01-15T01:28:16.613Z"
+                        }
+        '401':
+          description: The user is unauthorized
+        '404':
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Book not found, if the book searched was not found
+        '500':
+          description: >-
+            The server try to perform the operation but failed. It occurs
+            probably while searching on the database with some wrong parameter.
+      summary: Endpoint to obtain a single book with id "bookId"
+    patch:
+      tags:
+        - Books
+      summary: Endpoint to update only a partial part of the data.
+      description: |-
+
+
+        Only available for moderators or above.
+
+        Require an access token to perform
+
+        The information is obtained of the req.body
+      requestBody:
+        content:
+          Valid schema:
+            schema:
+              type: string
+              example: |-
+                {
+                  "title": "Title modified",
+                  "pages": 100
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The book or books was patched
+          content:
+            application/json:
+              examples:
+                Successful Response:
+                  value: |-
+                    {
+                      "_id": "63c356b0b96da8841e980638",
+                            "title": "Title modified",
+                            "author": "Isabel Allende",
+                            "year": 1982,
+                            "pages":100,
+                            "description": "La historia se inicia con una remembranza del diario de la niña Clara del Valle en un Jueves Santo, seguido por un comentario en una misa de mediodía en la capital de un país desconocido de Sudamérica. El escandaloso incidente en la iglesia establece el tono del resto de la novela. Clara seguiría escribiendo en su diario (al que ella se refería como cuadernos de escribir la vida) hasta su muerte. Esteban Trueba es un humilde ciudadano que parte rumbo a las minas para ganar suficiente dinero como para poder casarse con su amada, Rosa del Valle, una hermosa mujer con pelo verde. Durante su ausencia, Rosa muere envenenada por equivocación: los del partido político rivales a Severo del Valle, su padre, lo querían asesinar a él para que no fuese elegido. Esteban es de carácter fuerte y, constantemente, padece ataques de ira, ansiedad y violencia. Sufre mucho cuando Rosa muere, por lo que decide ir a reconstruir completamente Las Tres Marías, una vieja hacienda abandonada por su padre para olvidarse de su amada y hacerse rico. Diez años más tarde, ha conseguido reconstruir toda la finca y, a pesar de que ha mejorado enormemente las condiciones de vida de los empleados, su trato despótico y sus constantes abusos despiertan el silencioso resentimiento de más de un trabajador.",
+                            "image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/5COLGGFAZ5GFPGN6HR5D7CKY6I.jpg",
+                            "createdAt": "2023-01-15T01:28:16.613Z",
+                            "updatedAt": "2023-01-15T01:28:16.613Z"
+                    }
+        '401':
+          description: The user is unauthorized.
+        '404':
+          description: |-
+            Can be triggered by:
+              - No user found, if the token is invalid      
+              - Books not found, if the books searched was not found.
+        '500':
+          description: >-
+            The server try to perform the operation but failed. It occurs
+            probably while searching or updating on the database with some wrong
+            parameter.
+    put:
+      tags:
+        - Books
+      summary: Endpoint to update all the data.
+      description: |-
+
+
+        Only available for moderators or above.
+
+        Require an access token to perform
+
+        The information is obtained of the req.body
+      requestBody:
+        content:
+          Book modified:
+            schema:
+              type: object
+              example: |-
+                {
+                  "_id": "63c356b0b96da8841e980638",
+                  "title": "La casa de los ?",
+                  "author": "Isabel",
+                  "year": 1928,
+                  "pages": 124,
+                  "description": "No description",
+                  "image": "https://image.png"
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The book was successfully modified
+          content:
+            application/json:
+              examples:
+                Successful Response:
+                  value: |-
+                    {
+                      "_id": "63c356b0b96da8841e980638",
+                      "title": "La casa de los ?",
+                      "author": "Isabel",
+                      "year": 1928,
+                      "pages": 124,
+                      "description": "No description",
+                      "image": "https://image.png"
+                    }
+        '401':
+          description: The user is unauthorized.
+        '404':
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Books not found, if the books searched was not found
+        '500':
+          description: >-
+            The server try to perform the operation but failed. It occurs
+            probably while searching or updating on the database with some wrong
+            parameter.
+    delete:
+      tags:
+        - Books
+      summary: Endpoint to delete a book by id
+      description: >-
+
+
+        Only available for admins.
+
+
+        Require an access token to perform
+
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: The book or books was deleted
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                        "_id": "63c356b0b96da8841e980638",
+                        "title": "Deleted book",
+                        "author": "Isabel tercera",
+                        "year": 1928,
+                        "pages": 124,
+                        "description": "No description",
+                        "image": "https://image.png"
+                      }
+        '401':
+          description: The user is unauthorized.
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - Books not found, if the books searched was not found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter.
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Endpoint to get all users
+      description: >-
+
+        Only available for moderators or above.
+
+
+        Require an access token to perform the operation.
+
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The user or users was find
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      [
+                        {
+                          "username": "someusername",
+                          "email": "someemail@gmail.com",
+                          "password": "password"
+                        },
+                        {
+                          "username": "username",
+                          "email": "email@gmail.com",
+                          "password": "password"
+                        }
+                      ]
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - Users not found, if not users found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter.
+  /api/users/<userId>:
+    get:
+      tags:
+        - Users
+      summary: Endpoint to get a user by id.
+      description: >-
+
+
+        Only available for moderators or above.
+
+
+        Require an access toke to perform.
+
+
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The user was find
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com"
+                      }
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - User not found, if not user found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter.
+    put:
+      tags:
+        - Users
+      summary: Endpoint to completely update an user by id.
+      description: >-
+
+
+        Only available for admins.
+
+
+        Require a token to perform.
+
+
+      requestBody:
+        content:
+          'User to update':
+            schema:
+              type: object
+              example: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      }
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: The user was updated
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      }
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - Users not found, if not users found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.
+    patch:
+      tags:
+        - Users
+      summary: Endpoint to partially update a user by id.
+      description: >-
+
+
+        Only available for admins.
+
+
+        Require an access token to perform.
+
+
+
+      requestBody:
+        content:
+          'User to update':
+            schema:
+              type: object
+              example: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      }
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: The user was updated
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      }
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - Users not found, if not users found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.
+    delete:
+      tags:
+        - Users
+      summary: Endpoint to delete a user by id.
+      description: >-
+
+
+        Only available for admins.
+
+
+        Require an access token to perform.
+
+
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: The user was deleted
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      }
+        '404':
+          description: 
+            |-
+              Can be triggered by:
+                - No user found, if the token contains invalid information
+                - Users not found, if not users found
+        '500':
+          description: The server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter.
+  /api/auth/signup:
+    post:
+      tags:
+        - Auth
+      summary: Endpoint to sign up a new user
+      description: |-
+
+
+        Require a username, email and password.
+
+        Returns the user and a token.
+      requestBody:
+        content:
+          'New user':
+            schema:
+              type: object
+              example: |-
+                {
+                  "username": "someusername",
+                  "email": "someemail@gmail.com",
+                  "password": "password"
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzQyZGQ2ZGE1ZGQwOGQ5NWJjY2M1MyIsImlhdCI6MTY3MzgwMTE3NCwiZXhwIjoxNjczODg3NTc0fQ.WHfC-V3_CBt0vLM1SEh53cPhXkVsg7KOpNw8PENlhpw",
+                          "username": "Hardman",
+                          "email": "Hardman@gmail.com",
+                          "roles": [
+                              "63c3111ae72e6a3000e17795"
+                          ]
+                      }
+        '400':
+          description: If some field is empty or if the username or email is duplicated.
+        '500': 
+          description: The server doesn't know how to handle the error.
+        
+  /api/auth/signin:
+    post:
+      tags:
+        - Auth
+      summary: Endpoint to sign in a user
+      description: |-
+
+
+        Require a email and password.
+
+        Returns the user and a token.
+      requestBody:
+        content:
+          'User':
+            schema:
+              type: object
+              example: |-
+                {
+                  "email": "someemail@gmail.com",
+                  "password": "password"
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              examples:
+                  Successful Response:
+                    value: |-
+                      {
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzM0MTdjNjA2YjFkM2Q3NTkyYTFhZiIsImlhdCI6MTY3MzgwMTQ3MiwiZXhwIjoxNjczODg3ODcyfQ.T8V64DuhTbo9sGXtLoMsRQU9nxt_1pTuN49W2EHEeQs",
+                          "username": "Harvey",
+                          "email": "harvey@gmail.com",
+                          "roles": [
+                              {
+                                  "_id": "63c3111ae72e6a3000e17795",
+                                  "name": "user"
+                              }
+                          ]
+                      }
+        '400':
+          description: If some field is empty.
+        '401':
+          description: The email or the password is incorrect.
+        '500': 
+          description: The server doesn't know how to handle the error.
+externalDocs:
+  url: https://github.com/xHenrySx/xHenrySx.github.io
+  description: GitHub
