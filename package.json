@@ -19,7 +19,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "build": "babel src --out-dir dist",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
