@@ -9,6 +9,7 @@
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
+  - [Usage](#usage)
 - [DOCUMENTATION](#documentation)
     - [BOOKS](#books)
       - [Parameters](#parameters)
@@ -65,6 +66,18 @@ or to build it
 javascript
 node.js
 npm
+
+### Usage
+ATTENTION: Some test only works when is run one time, beacuse it create users and users can be unique.
+
+To run the test:
+```cmd
+npm run test
+```
+or
+```cmd
+mocha
+```
 
 ## DOCUMENTATION
 Link to swagger https://app.swaggerhub.com/apis/ENRISAL2000/api-book/1.0.0
