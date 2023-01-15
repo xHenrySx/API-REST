@@ -68,7 +68,9 @@ node.js
 npm
 
 ### Usage
-ATTENTION: Some test only works when is run one time, beacuse it create users and users can be unique.
+ATTENTION: 
+- Some test only works when is run one time, beacuse it create users and users can be unique.
+- La ruta del server es local con puerto 3000
 
 To run the test:
 ```cmd
