@@ -21,12 +21,10 @@
         - [image](#image)
     - [USERS](#users)
       - [Parameters](#parameters)
-        - [title](#title)
-        - [author](#author)
-        - [year](#year)
-        - [pages](#pages)
-        - [description](#description)
-        - [image](#image)
+        - [username](#username)
+        - [email](#email)
+        - [password](#password)
+        - [roles](#roles)
     - [AUTH](#auth)
       - [sign up](#sign up)
       - [sign in](#sign in)
@@ -68,7 +66,9 @@ node.js
 npm
 
 ### Usage
-ATTENTION: Some test only works when is run one time, beacuse it create users and users can be unique.
+ATTENTION: 
+- Some test only works when is run one time, beacuse it create users and users can be unique.
+- The server is listening to port 3000 locally
 
 To run the test:
 ```cmd
