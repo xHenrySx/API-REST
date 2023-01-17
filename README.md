@@ -45,7 +45,7 @@ The book API help to obtain information about a specific book or a lot of books 
 ## Getting Started
 
 To start first run the command
-`    npm install `
+`   npm install`
 
 then
 to run like a developer just run the command
