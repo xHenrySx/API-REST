@@ -8,7 +8,7 @@ info:
 
 
     Was maded by Enrique Saldivar in
-    2023.                                                                                                                
+    2023.
   contact:
     name: Enrique Adrian Saldivar Duarte
     email: enrisal2000@gmail.com
@@ -223,7 +223,7 @@ paths:
             type: string
           example: year:gt:1925
       responses:
-        '200':
+        "200":
           description: The book or books was find
           content:
             application/json:
@@ -243,9 +243,9 @@ paths:
                             "updatedAt": "2023-01-15T01:28:16.613Z"
                         }
                     ]
-        '401':
+        "401":
           description: The user is unautorized
-        '404':
+        "404":
           description: >-
             - No user found, if the token is invalid
 
@@ -253,7 +253,7 @@ paths:
 
             - Books not found with the params, if the param didn't match with a
             book
-        '500':
+        "500":
           description: >-
             The server try to perform the operation but failed. It occurs
             probably while searching on the database with some wrong parameter.
@@ -290,7 +290,7 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: The book was created
           content:
             application/json:
@@ -325,7 +325,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -343,14 +343,14 @@ paths:
                             "createdAt": "2023-01-15T01:28:16.613Z",
                             "updatedAt": "2023-01-15T01:28:16.613Z"
                         }
-        '401':
+        "401":
           description: The user is unauthorized
-        '404':
+        "404":
           description: |-
             Can be triggered by:
               - No user found, if the token contains invalid information
               - Book not found, if the book searched was not found
-        '500':
+        "500":
           description: >-
             The server try to perform the operation but failed. It occurs
             probably while searching on the database with some wrong parameter.
@@ -388,7 +388,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: The book or books was patched
           content:
             application/json:
@@ -406,14 +406,14 @@ paths:
                             "createdAt": "2023-01-15T01:28:16.613Z",
                             "updatedAt": "2023-01-15T01:28:16.613Z"
                     }
-        '401':
+        "401":
           description: The user is unauthorized.
-        '404':
+        "404":
           description: |-
             Can be triggered by:
               - No user found, if the token is invalid      
               - Books not found, if the books searched was not found.
-        '500':
+        "500":
           description: >-
             The server try to perform the operation but failed. It occurs
             probably while searching or updating on the database with some wrong
@@ -456,7 +456,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: The book was successfully modified
           content:
             application/json:
@@ -472,14 +472,14 @@ paths:
                       "description": "No description",
                       "image": "https://image.png"
                     }
-        '401':
+        "401":
           description: The user is unauthorized.
-        '404':
+        "404":
           description: |-
             Can be triggered by:
               - No user found, if the token contains invalid information
               - Books not found, if the books searched was not found
-        '500':
+        "500":
           description: >-
             The server try to perform the operation but failed. It occurs
             probably while searching or updating on the database with some wrong
@@ -507,31 +507,30 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: The book or books was deleted
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                        "_id": "63c356b0b96da8841e980638",
-                        "title": "Deleted book",
-                        "author": "Isabel tercera",
-                        "year": 1928,
-                        "pages": 124,
-                        "description": "No description",
-                        "image": "https://image.png"
-                      }
-        '401':
+                Successful Response:
+                  value: |-
+                    {
+                      "_id": "63c356b0b96da8841e980638",
+                      "title": "Deleted book",
+                      "author": "Isabel tercera",
+                      "year": 1928,
+                      "pages": 124,
+                      "description": "No description",
+                      "image": "https://image.png"
+                    }
+        "401":
           description: The user is unauthorized.
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - Books not found, if the books searched was not found
-        '500':
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Books not found, if the books searched was not found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter.
   /api/users:
     get:
@@ -551,32 +550,31 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: The user or users was find
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      [
-                        {
-                          "username": "someusername",
-                          "email": "someemail@gmail.com",
-                          "password": "password"
-                        },
-                        {
-                          "username": "username",
-                          "email": "email@gmail.com",
-                          "password": "password"
-                        }
-                      ]
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - Users not found, if not users found
-        '500':
+                Successful Response:
+                  value: |-
+                    [
+                      {
+                        "username": "someusername",
+                        "email": "someemail@gmail.com",
+                        "password": "password"
+                      },
+                      {
+                        "username": "username",
+                        "email": "email@gmail.com",
+                        "password": "password"
+                      }
+                    ]
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Users not found, if not users found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter.
   /api/users/<userId>:
     get:
@@ -591,31 +589,29 @@ paths:
 
         Require an access toke to perform.
 
-
       parameters:
         - name: x-access-token
           in: header
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: The user was find
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com"
-                      }
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - User not found, if not user found
-        '500':
+                Successful Response:
+                  value: |-
+                    {
+                      "username": "someusername",
+                      "email": "someemail@gmail.com"
+                    }
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - User not found, if not user found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching on the database with some wrong parameter.
     put:
       tags:
@@ -629,18 +625,17 @@ paths:
 
         Require a token to perform.
 
-
       requestBody:
         content:
-          'User to update':
+          "User to update":
             schema:
               type: object
               example: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com",
-                        "password": "password"
-                      }
+                {
+                  "username": "someusername",
+                  "email": "someemail@gmail.com",
+                  "password": "password"
+                }
       parameters:
         - name: x-access-token
           in: header
@@ -652,25 +647,24 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: The user was updated
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com",
-                        "password": "password"
-                      }
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - Users not found, if not users found
-        '500':
+                Successful Response:
+                  value: |-
+                    {
+                      "username": "someusername",
+                      "email": "someemail@gmail.com",
+                      "password": "password"
+                    }
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Users not found, if not users found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.
     patch:
       tags:
@@ -684,19 +678,17 @@ paths:
 
         Require an access token to perform.
 
-
-
       requestBody:
         content:
-          'User to update':
+          "User to update":
             schema:
               type: object
               example: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com",
-                        "password": "password"
-                      }
+                {
+                  "username": "someusername",
+                  "email": "someemail@gmail.com",
+                  "password": "password"
+                }
       parameters:
         - name: x-access-token
           in: header
@@ -708,25 +700,24 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: The user was updated
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com",
-                        "password": "password"
-                      }
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - Users not found, if not users found
-        '500':
+                Successful Response:
+                  value: |-
+                    {
+                      "username": "someusername",
+                      "email": "someemail@gmail.com",
+                      "password": "password"
+                    }
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Users not found, if not users found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching or updating on the database with some wrong parameter.
     delete:
       tags:
@@ -740,7 +731,6 @@ paths:
 
         Require an access token to perform.
 
-
       parameters:
         - name: x-access-token
           in: header
@@ -752,25 +742,24 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: The user was deleted
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                        "username": "someusername",
-                        "email": "someemail@gmail.com",
-                        "password": "password"
-                      }
-        '404':
-          description: 
-            |-
-              Can be triggered by:
-                - No user found, if the token contains invalid information
-                - Users not found, if not users found
-        '500':
+                Successful Response:
+                  value: |-
+                    {
+                      "username": "someusername",
+                      "email": "someemail@gmail.com",
+                      "password": "password"
+                    }
+        "404":
+          description: |-
+            Can be triggered by:
+              - No user found, if the token contains invalid information
+              - Users not found, if not users found
+        "500":
           description: The server try to perform the operation but failed. It occurs probably while searching or deleting on the database with some wrong parameter.
   /api/auth/signup:
     post:
@@ -785,7 +774,7 @@ paths:
         Returns the user and a token.
       requestBody:
         content:
-          'New user':
+          "New user":
             schema:
               type: object
               example: |-
@@ -801,26 +790,26 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzQyZGQ2ZGE1ZGQwOGQ5NWJjY2M1MyIsImlhdCI6MTY3MzgwMTE3NCwiZXhwIjoxNjczODg3NTc0fQ.WHfC-V3_CBt0vLM1SEh53cPhXkVsg7KOpNw8PENlhpw",
-                          "username": "Hardman",
-                          "email": "Hardman@gmail.com",
-                          "roles": [
-                              "63c3111ae72e6a3000e17795"
-                          ]
-                      }
-        '400':
+                Successful Response:
+                  value: |-
+                    {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzQyZGQ2ZGE1ZGQwOGQ5NWJjY2M1MyIsImlhdCI6MTY3MzgwMTE3NCwiZXhwIjoxNjczODg3NTc0fQ.WHfC-V3_CBt0vLM1SEh53cPhXkVsg7KOpNw8PENlhpw",
+                        "username": "Hardman",
+                        "email": "Hardman@gmail.com",
+                        "roles": [
+                            "63c3111ae72e6a3000e17795"
+                        ]
+                    }
+        "400":
           description: If some field is empty or if the username or email is duplicated.
-        '500': 
+        "500":
           description: The server doesn't know how to handle the error.
-        
+
   /api/auth/signin:
     post:
       tags:
@@ -834,7 +823,7 @@ paths:
         Returns the user and a token.
       requestBody:
         content:
-          'User':
+          "User":
             schema:
               type: object
               example: |-
@@ -849,29 +838,29 @@ paths:
             type: string
           example: application/json
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               examples:
-                  Successful Response:
-                    value: |-
-                      {
-                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzM0MTdjNjA2YjFkM2Q3NTkyYTFhZiIsImlhdCI6MTY3MzgwMTQ3MiwiZXhwIjoxNjczODg3ODcyfQ.T8V64DuhTbo9sGXtLoMsRQU9nxt_1pTuN49W2EHEeQs",
-                          "username": "Harvey",
-                          "email": "harvey@gmail.com",
-                          "roles": [
-                              {
-                                  "_id": "63c3111ae72e6a3000e17795",
-                                  "name": "user"
-                              }
-                          ]
-                      }
-        '400':
+                Successful Response:
+                  value: |-
+                    {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzM0MTdjNjA2YjFkM2Q3NTkyYTFhZiIsImlhdCI6MTY3MzgwMTQ3MiwiZXhwIjoxNjczODg3ODcyfQ.T8V64DuhTbo9sGXtLoMsRQU9nxt_1pTuN49W2EHEeQs",
+                        "username": "Harvey",
+                        "email": "harvey@gmail.com",
+                        "roles": [
+                            {
+                                "_id": "63c3111ae72e6a3000e17795",
+                                "name": "user"
+                            }
+                        ]
+                    }
+        "400":
           description: If some field is empty.
-        '401':
+        "401":
           description: The email or the password is incorrect.
-        '500': 
+        "500":
           description: The server doesn't know how to handle the error.
 externalDocs:
   url: https://github.com/xHenrySx/xHenrySx.github.io
