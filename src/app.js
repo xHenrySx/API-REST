@@ -12,7 +12,6 @@ createRoles();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 app.use("/api/books", booksRouter);
 
 app.use("/api/auth", authRouter);
@@ -20,8 +19,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 
 app.get("*", (req, res) => {
-    res.status(404).json({ message: "Not found" });
+  res.status(404).json({ message: "Not found" });
 });
-
 
 export default app;
