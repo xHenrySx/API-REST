@@ -24,14 +24,12 @@ export const signup = async (req, res) => {
     const token = jwt.sign({ id: savedUser._id }, SECRET, {
       expiresIn: 86400, // 24 horas
     });
-    return res
-      .status(200)
-      .json({
-        token,
-        username: savedUser.username,
-        email: savedUser.email,
-        roles: savedUser.roles,
-      });
+    return res.status(200).json({
+      token,
+      username: savedUser.username,
+      email: savedUser.email,
+      roles: savedUser.roles,
+    });
   } catch (error) {
     return res.status(500).json({ message: error });
   }
@@ -59,14 +57,12 @@ export const signin = async (req, res) => {
     const token = jwt.sign({ id: user._id }, SECRET, {
       expiresIn: 86400, // 24 horas
     });
-    return res
-      .status(200)
-      .json({
-        token,
-        username: user.username,
-        email: user.email,
-        roles: user.roles,
-      });
+    return res.status(200).json({
+      token,
+      username: user.username,
+      email: user.email,
+      roles: user.roles,
+    });
   }
 
   // El token no expira si el rol es admin o moderator

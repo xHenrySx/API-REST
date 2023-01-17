@@ -89,11 +89,9 @@ export const verifyRoles = (req, res, next) => {
     const { roles } = req.body;
     for (const role of roles) {
       if (role !== "admin" && role !== "moderator" && role !== "user") {
-        return res
-          .status(400)
-          .json({
-            message: `Role ${role} does not exist. Please check documentation.`,
-          });
+        return res.status(400).json({
+          message: `Role ${role} does not exist. Please check documentation.`,
+        });
       }
     }
     // Si hay roles verificar que el usuario que esta creando el usuario sea admin o moderador
@@ -124,11 +122,9 @@ export const verifyFilter = (req, res, next) => {
   if (filter) {
     for (const key in filter) {
       if (!availableFilters.includes(key)) {
-        return res
-          .status(400)
-          .json({
-            message: `${key} is not a valid filter. Please check the documentation`,
-          });
+        return res.status(400).json({
+          message: `${key} is not a valid filter. Please check the documentation`,
+        });
       }
     }
     next();
@@ -143,21 +139,17 @@ export const verifyOperators = (req, res, next) => {
       const filter = req.headers.filter.split(":");
 
       if (filter.length !== 3) {
-        return res
-          .status(400)
-          .json({
-            message: "Bad filter format. Please check the documentation",
-          });
+        return res.status(400).json({
+          message: "Bad filter format. Please check the documentation",
+        });
       }
 
       const operator = filter[1];
       const availableOperators = ["gt", "gte", "lt", "lte", "ne", "substring"];
       if (!availableOperators.includes(operator)) {
-        return res
-          .status(400)
-          .json({
-            message: `${operator} is not a valid operator. Please check the documentation`,
-          });
+        return res.status(400).json({
+          message: `${operator} is not a valid operator. Please check the documentation`,
+        });
       }
       next();
     } catch (error) {
