@@ -80,7 +80,6 @@ mocha
 ```
 
 ## DOCUMENTATION
-Link to swagger https://app.swaggerhub.com/apis/ENRISAL2000/api-book/1.0.0
 
 ### BOOKS
 The book model is constructed like this:
